@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}
+truDefender - Fake News
+{% endblock %}
+{% block head %} {{ super() }} {% endblock %}
+
+
+{% block main %}
+<style>
+        
+    .form-control {
+      background-color: #333;
+      border-color: #555;
+      color: #fff;
+    }
+    
+    .form-control:focus {
+      background-color: #444;
+      border-color: #777;
+      color: #fff;
+    }
+  </style>
+<div class="pt-5">
+    <h1>
+        {% if fake == "True" %} 
+        <span class="text-danger py-4">FAKE NEWS ⚠️</span>
+        {% elif fake == "False" %}
+        <span class="text-success py-4">REAL NEWS 👍</span>
+        {% endif %}
+    </h1>
+    <h2 class="py-2">Enter the news:</h1>
+
+        <form method="POST" action="/new">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="title" style="width:70%;" placeholder="Title goes here">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Text</label>
+                <div class="col-sm-10">
+                    <textarea name="text" rows="15" style="width:70%;" class="form-control" id="message"  placeholder="Body goes here"></textarea>
+                </div>
+            </div>
+            
+            <!-- {% if error %}
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <label class="col-sm-12 col-form-label" style="color:red;">{{ error }}</label>
+                </div>
+            </div>
+            {% endif %} -->
+            <div class="form-group row pt-4">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn theme-color-btn btn-lg">Check</button>
+                </div>
+            </div>
+        </form>
+    <!-- {% if not error and graph_json %}
+    <div class = "graph-container mt-5 mb-5 rcorners">
+        <div id='chart' class='chart responsive-graph'></div>
+    </div>
+    {% else %}
+    <div style = "margin-top: 80%;"></div>
+    {% endif %} -->
+    
+</div>
+
+
+
+{% endblock %}
